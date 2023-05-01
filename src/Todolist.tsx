@@ -2,17 +2,17 @@ import React from 'react';
 
 type TodolistPropsTitle = {
     track1: string
-    track2?: number|boolean
+    track2?: number | boolean
 
     tasks: Array<TaskType>
 }
- type TaskType = {
+type TaskType = {
     id: number
     title: string
     isDone: boolean
 }
 
- export const Todolist = (props: TodolistPropsTitle) => {
+export const Todolist = (props: TodolistPropsTitle) => {
     return (
         <div className="todolist">
             <h3>{props.track1}</h3>
@@ -21,12 +21,24 @@ type TodolistPropsTitle = {
                 <button>+</button>
             </div>
             <ul>
-                <li><input type="checkbox" checked={props.tasks[0].isDone}/>
-                    <span>{props.tasks[0].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[1].isDone}/>
-                    <span>J{props.tasks[1].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[2].isDone}/>
-                    <span>{props.tasks[2].title}</span></li>
+                {props.tasks.map((el) => {
+                        debugger
+                        return (
+
+                            <li key={el.id}>
+                                <button onClick={() => {console.log(el.id)}}>X
+                                </button>
+                                <input type="checkbox" checked={el.isDone}/> <span>{el.title}</span>
+                                <span>{el.title}</span>
+                            </li>
+                        )
+
+
+                    }
+                )
+                }
+
+
             </ul>
             <div>
                 <button>All</button>
@@ -38,3 +50,4 @@ type TodolistPropsTitle = {
 };
 
 export default Todolist;
+
